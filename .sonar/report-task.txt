@@ -1,0 +1,5 @@
+projectKey=properties-easy
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/properties-easy
+ceTaskId=AV49Kw2k9Ee6h56GEjws
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AV49Kw2k9Ee6h56GEjws
