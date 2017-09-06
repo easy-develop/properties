@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    
+    <servers>
+        <server>
+            <id>ossrh</id>
+            <!--
+            The user-name and password should be same as JIRA ticket credentials for OSSRH (https://oss.sonatype.org/)
+            The credentials can be plain or as obtained from "Profile -> User Token" page in Nexus Repository Manager
+            -->
+            <username>__JIRA_LOGIN_USER__</username>
+            <password>__JIRA_LOGIN_PASS__</password>
+        </server>
+    </servers>
+    
+    <profiles>
+        <profile>
+            <id>release</id>
+            <properties>
+                <gpg.executable>gpg2</gpg.executable>
+                <!-- 
+                The passphrase used while generating the public key through pgp utility. It should be kept somewhere
+                else securly
+                -->
+                <gpg.passphrase>__PASSPHRASE__</gpg.passphrase>
+            </properties>
+        </profile>
+    </profiles>
+</settings>

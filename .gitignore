@@ -13,3 +13,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# directory containing build files
+target/
+
+# maven settings.xml
+maven_settings.xml
+
+# netbeans IDE specific configuration files
+nb-configuration.xml
+nbproject/
+
+# Code quality tool (sonarqube) configuration file
+sonar-project.properties

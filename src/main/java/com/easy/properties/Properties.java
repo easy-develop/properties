@@ -151,7 +151,7 @@ public class Properties{
     }
     
     /**
-     * @param <T>
+     * @param <T> The class representing type of elements of the list
      * @param key Enum key for which configuration property is needed
      * @param type Data type of elements of the list
      * @return List of elements separated by comma in the configuration property file
@@ -161,7 +161,7 @@ public class Properties{
     }
     
     /**
-     * @param <T>
+     * @param <T> The class representing type of elements of the list
      * @param key Enum key for which configuration property is needed
      * @param type Data type of elements of the list
      * @param delimiter Delimiter which separates the list elements
@@ -231,7 +231,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as integer
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not an integer
      */
     public int getInt(Enum key){
         logger.trace("Obtaining integer value for: {}", key.name());
@@ -246,7 +246,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as long
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a long
      */
     public long getLong(Enum key){
         logger.trace("Obtaining long value for: {}", key.name());
@@ -261,7 +261,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as float
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a float
      */
     public float getFloat(Enum key){
         logger.trace("Obtaining float value for: {}", key.name());
@@ -276,7 +276,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as double
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a double
      */
     public double getDouble(Enum key){
         logger.trace("Obtaining double value for: {}", key.name());
@@ -291,7 +291,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as short
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a short
      */
     public short getShort(Enum key){
         logger.trace("Obtaining short value for: {}", key.name());
@@ -306,7 +306,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as character
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a character
      */
     public char getChar(Enum key){
         logger.trace("Obtaining char value for: {}", key.name());
@@ -320,7 +320,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as byte
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a byte
      */
     public byte getByte(Enum key){
         logger.trace("Obtaining byte value for: {}", key.name());
@@ -335,7 +335,7 @@ public class Properties{
     /**
      * @param key Enum key for which configuration property is needed
      * @return Configuration property value as boolean
-     * @throws InvalidConfigException
+     * @throws InvalidConfigException If value specified in configuration file is not a boolean
      */
     public boolean getBoolean(Enum key){
         logger.trace("Obtaining boolean value for: {}", key.name());

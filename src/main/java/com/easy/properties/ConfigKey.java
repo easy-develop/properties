@@ -1,7 +1,6 @@
 package com.easy.properties;
 
 import com.easy.properties.exception.EnumMissingOptionalFieldException;
-import javax.xml.crypto.dsig.keyinfo.KeyName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +38,7 @@ public class ConfigKey {
     
     /**
      * Depending upon the fields defined in specified Enum, {@code keyName, mandatory and defaultValue} will be updated
-     * @param enumConstant 
+     * @param enumConstant The enum constant for which configuration property is to be obtained
      */
     public ConfigKey(Object enumConstant){
         logger.trace("Constructing instance with {}", enumConstant.getClass().getName());
@@ -50,7 +49,7 @@ public class ConfigKey {
     
     /**
      * Values other than {@code keyName} ({@code mandatory and defaultValue}) will be set to their default values
-     * @param keyName 
+     * @param keyName The key name corresponding to enum constant
      */
     public ConfigKey(String keyName){
         logger.trace("Constructing instance with {}", keyName);
