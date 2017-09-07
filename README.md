@@ -72,7 +72,13 @@ public class ReadPropsDemo {
     }
 }
 ```
-And that's it. Obtained instance of `com.easy.properties.Properties` can be used to retrieve value corresponding to certain enum constant in required format (data type) as shown above
+And that's it. Obtained instance of `com.easy.properties.Properties` can be used to retrieve value corresponding to certain enum constant in required format (data type) as shown above. The content of configuration property file could be something like below:
+```properties
+HOME_DIR = /home/demo
+CONF_DIR = ${HOME_DIR}/conf
+LOG_DIR = ${HOME_DIR}/logs
+CURRENT_USER_IDS = 1921, 8887, 7746
+```
 
 <a name="support"></a>
 ## Support
