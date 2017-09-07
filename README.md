@@ -14,7 +14,7 @@ An easy to use and lightweight Java library for retrieving configuration propert
 <a name="feature_highlights"></a>
 ## Feature Highlights
 - All property keys are defined in a single place, i.e. a user defined `enum`
-- Property values can contain variables (starting with `$` sign, e.g. `$PATH`) which will be resolved when fetched
+- Property values can contain variables (starting with `$` sign, e.g. `$PATH`) where `PATH` is a property key in same file
 - Property value can be obtained as specified data type, so no need to convert string value to required data type
 - Property value can be obtained as list of specified data types
 - Property value can be a multi-line text
