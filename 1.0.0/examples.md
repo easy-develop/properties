@@ -250,8 +250,8 @@ And the output is:
 Home directory is: /home/demo
 Configuration directory is: /var/tmp
 ```
-<hr>
-**NOTE**: The `enum` can contain all or any of the fields defined above (i.e. `mandatory`, `keyName` and `defaultValue`) to customize the behavior of configuration properties
+
+NOTE: The `enum` can contain all or any of the fields defined above (i.e. `mandatory`, `keyName` and `defaultValue`) to customize the behavior of configuration properties
 <hr>
 
 
