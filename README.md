@@ -37,10 +37,10 @@ While using property files are often preferred for defining application configur
 <dependency>
     <groupId>com.github.easy-develop</groupId>
     <artifactId>properties</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
-If you are using any other tool for build, have a look at [Maven Repository](https://mvnrepository.com/artifact/com.github.easy-develop/properties/1.0) page for corresponding dependency declaration
+If you are using any other tool for build, have a look at [Maven Repository](https://mvnrepository.com/artifact/com.github.easy-develop/properties/1.0.0) page for corresponding dependency declaration
 
 - Create an `enum` class which will define the property keys, like below example:
 ```java
