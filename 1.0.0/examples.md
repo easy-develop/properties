@@ -1,5 +1,5 @@
-# Demo Examples
-Below given examples are for demonstrating how the [properties](https://github.com/easy-develop/properties) library can be used in various scenarios. Each of the examples will show these:
+# Examples
+Below given examples are for demonstrating how the [properties](https://github.com/easy-develop/properties) library can be used in various scenarios. Each of the examples will have these:
 
  1. `enum` class
  2. Configuration property file
@@ -9,11 +9,7 @@ Below given examples are for demonstrating how the [properties](https://github.c
 <hr>
 
  - **A simple case**
- 
-
-    MyPropertyKey.java
-
- 
+The `enum` defining property keys:
  ```java
 package com.demo.properties;
 
@@ -23,11 +19,14 @@ public enum MyPropertyKey {
 }
 ```
 
+The property file containing configuration values in the form of `key = value` pairs:
+
 ```properties
 HOME_DIR = /home/demo
 CONF_DIR = ${HOME_DIR}/conf
 ```
-`ReadPropsDemo.java`
+
+Example driver program:
 ```java
 package com.demo.properties;
 
@@ -38,16 +37,17 @@ public class ReadPropsDemo {
     public static void main(String[] args) {
         PropertiesLoader propsLoader = new PropertiesLoader("src/main/resources/config.properties", MyPropertyKey.class);
         Properties props = propsLoader.load();
-        
+
         String homeDir = props.get(MyPropertyKey.HOME_DIR);
         String confDir = props.get(MyPropertyKey.CONF_DIR);
-        
+
         System.out.println("Home directory is: " + homeDir);
         System.out.println("Current users: " + confDir);
     }
 }
 ```
-`Output`
-
-    HOME_DIR = /home/demo
-    CONF_DIR = ${HOME_DIR}/conf
+And, the output:
+```txt
+Home directory is: /home/demo
+Current users: /home/demo/conf
+```
