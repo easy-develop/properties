@@ -8,18 +8,18 @@ Below given examples are for demonstrating how the [properties](https://github.c
 
 <hr>
 
- - **A simple case**
-The `enum` defining property keys:
- ```java
+ - **A simple case**  
+The `enum` defining property keys:  
+```java
 package com.demo.properties;
 
 public enum MyPropertyKey {
     HOME_DIR,
     CONF_DIR
 }
-```
-
-The property file containing configuration values in the form of `key = value` pairs:
+```  
+  
+The property file containing configuration values in the form of `key = value` pairs:  
 
 ```properties
 HOME_DIR = /home/demo
@@ -37,10 +37,10 @@ public class ReadPropsDemo {
     public static void main(String[] args) {
         PropertiesLoader propsLoader = new PropertiesLoader("src/main/resources/config.properties", MyPropertyKey.class);
         Properties props = propsLoader.load();
-
+        
         String homeDir = props.get(MyPropertyKey.HOME_DIR);
         String confDir = props.get(MyPropertyKey.CONF_DIR);
-
+        
         System.out.println("Home directory is: " + homeDir);
         System.out.println("Current users: " + confDir);
     }
