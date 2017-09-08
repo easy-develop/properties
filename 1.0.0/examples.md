@@ -29,13 +29,13 @@ public enum MyPropertyKey {
     CONF_DIR
 }
 ```
-<br/>
-The property file containing the configuration in the form of `key = value`:
+
+The property file containing the configuration in the form of `key = value`:  
 ```properties
 HOME_DIR = /home/demo
 CONF_DIR = ${HOME_DIR}/conf
 ```
-<br/>
+
 The demo driver program:
 ```java
 package com.demo.properties;
@@ -56,7 +56,7 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And, the console output:
 ```txt
 Home directory is: /home/demo
@@ -85,13 +85,13 @@ public enum MyPropertyKey {
     }
 }
 ```
-<br/>
+
 Now, suppose the configuration file does not contain one of the mandatory keys. Then, the demo driver program will fail with error. Here is the example properties file:
 ```properties
 # This configuration property file is for test purpose
 HOME_DIR = /home/demo
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -119,13 +119,13 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And, the output is:
 ```txt
 Cannot load configuration due to: Missing mandatory configuration key (CONF_DIR)
 ```
 <hr>
-<br/>
+
 <a name="different_key"></a>
 ## Using key name different from enum constant name
 If we want to have the property key name something other than variable name, we can do so by defining `keyName` field. The `enum` must contain a `String` field named `keyName` and corresponding getter method (i.e. `String getKeyName()` returning key name to be used in the property file. Here is the example `enum`:
@@ -147,13 +147,13 @@ public enum MyPropertyKey {
     }
 }
 ```
-<br/>
+
 And configuration property file is:
 ```properties
 demo.home.dir = /home/demo
 demo.conf.dir = ${demo.home.dir}/conf
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -181,14 +181,14 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 The output is:
 ```txt
 Home directory is: /home/demo
 Configuration directory is: /home/demo/conf
 ```
 <hr>
-<br/>
+
 <a name="default_value"></a>
 ## Specifying default value for a key
 If we want to have a default value in case value is not available in the configuration file, we can do so by defining a field named `defaultValue` of type `String` in the `enum`. Here is the example `enum`:
@@ -210,13 +210,13 @@ public enum MyPropertyKey {
     }
 }
 ```
-<br/>
+
 The configuration property file is:
 ```properties
 HOME_DIR = /home/demo
 # The CONF_DIR is missing intentionally, should take default value
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -244,7 +244,7 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And the output is:
 ```txt
 Home directory is: /home/demo
@@ -253,7 +253,7 @@ Configuration directory is: /var/tmp
 <hr>
 **NOTE**: The `enum` can contain all or any of the fields defined above (i.e. `mandatory`, `keyName` and `defaultValue`) to customize the behavior of configuration properties
 <hr>
-<br/>
+
 
 <a name="typed_value"></a>
 ## Obtaining values as non-String types
@@ -267,14 +267,14 @@ public enum MyPropertyKey {
     MAX_ALLOWED_LOAD_RATIO
 }
 ```
-<br/>
+
 The configuration property file is:
 ```properties
 HOME_DIR = /home/demo
 MIN_ALLOWED_PORT = 1024
 MAX_ALLOWED_LOAD_RATIO = .85
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -304,7 +304,7 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And the output is:
 ```txt
 Home directory is: /home/demo
@@ -312,7 +312,7 @@ Minimum allowed starting port: 1024
 Max allowed load ratio: 0.85
 ```
 <hr>
-<br/>
+
 
 <a name="list_of_values"></a>
 ## Obtaining list of values
@@ -325,7 +325,7 @@ public enum MyPropertyKey {
     DIRECTORIES_TO_SEARCH
 }
 ```
-<br/>
+
 The configuration property file is:
 ```properties
 HOME_DIR = /home/demo
@@ -333,7 +333,7 @@ HOME_DIR = /home/demo
 # obtaining the value as list
 DIRECTORIES_TO_SEARCH = /tmp | /var/tmp | /var/www
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -362,14 +362,14 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And the output is:
 ```txt
 Home directory is: /home/demo
 Directories to search are: [/tmp, /var/tmp, /var/www]
 ```
 <hr>
-<br/>
+
 
 <a name="multi_lined_value"></a>
 ## Multi-lined value
@@ -382,7 +382,7 @@ public enum MyPropertyKey {
     DESCRIPTION
 }
 ```
-<br/>
+
 The configuration property file is:
 ```properties
 HOME_DIR = /home/demo
@@ -390,7 +390,7 @@ DESCRIPTION = This is a demo utility,
 just for the test purpose. And, it is not
 supposed to do any actual work as you might already have guessed!!
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -419,7 +419,7 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And the output is:
 ```txt
 Home directory is: /home/demo
@@ -428,7 +428,7 @@ just for the test purpose. And, it is not
 supposed to do any actual work as you might already have guessed!!
 ```
 <hr>
-<br/>
+
 <a name="var_substitution"></a>
 ## Variable substitution in the values
 The configuration value can have variables (starting with a `$` character you might have seen in `bash` syntax), where the name of variable is some key defined in the property file, irrespective of the order. The value of variable will be resolved recursively, which means that value of a variable can contain yet another variable. Here is the example `enum`:
@@ -441,7 +441,7 @@ public enum MyPropertyKey {
     DUMP_FILE_PATH
 }
 ```
-<br/>
+
 The configuration property file is:
 ```properties
 BIN_DIR = ${HOME_DIR}/bin
@@ -450,7 +450,7 @@ DUMP_FILE_PATH = ${BIN_DIR}/dump_logs.trc
 # This should not cause any problem and variable value should be resolved correctly
 HOME_DIR = /home/demo
 ```
-<br/>
+
 The demo driver program is:
 ```java
 package com.demo.properties;
@@ -480,7 +480,7 @@ public class ReadPropsDemo {
     }
 }
 ```
-<br/>
+
 And the output is:
 ```txt
 Home directory is: /home/demo
