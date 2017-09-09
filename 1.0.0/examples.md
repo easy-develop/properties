@@ -13,7 +13,7 @@ Below given examples are for demonstrating how the [properties](https://github.c
  - [Specifying mandatory property keys](#specify_mandatory_keys)
  - [Using key name different from enum constant name](#different_key)
  - [Specifying default value for a key](#default_value)
- - [Specifying default value for a key](#typed_value)
+ - [Obtaining values as non-String types](#typed_value)
  - [Obtaining list of values](#list_of_values)
  - [Multi-lined value](#multi_lined_value)
  - [Variable substitution in the values](#var_substitution)
