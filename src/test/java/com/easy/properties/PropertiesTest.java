@@ -2,6 +2,7 @@ package com.easy.properties;
 
 import com.easy.properties.data.Var;
 import com.easy.properties.enums.MyPropsSimple;
+import com.easy.properties.enums.MyPropsSingleLetterKey;
 import com.easy.properties.enums.MyPropsWithAllOptionalFieldsPresent;
 import com.easy.properties.enums.MyPropsWithDefaultValue;
 import com.easy.properties.enums.MyPropsWithKeyName;
@@ -15,6 +16,34 @@ import org.junit.Test;
 
 public class PropertiesTest {
     private static final String TEST_HOME_VAL = "/home/test";
+    @Test
+    public void readsSingleLetterKeys(){
+        PropertiesLoader propsLoader = new PropertiesLoader(Var.WITH_SINGLE_LETTER_KEYS_PROPS, MyPropsSingleLetterKey.class);
+        Properties props = propsLoader.load();
+        assertEquals("Cannot read single letter keys", "7718 - 178", props.get(MyPropsSingleLetterKey.X));
+    }
+    
+    @Test(expected = InvalidConfigException.class)
+    public void invalidConfigIsThrownIfCyclicDependency(){
+        PropertiesLoader propsLoader = new PropertiesLoader(Var.WITH_CYCLIC_DEPENDENCY_PROPS, MyPropsSingleLetterKey.class);
+        propsLoader.load();
+    }
+    
+    @Test
+    public void readsSystemPropertyInVariable(){
+        System.setProperty("MySysPropTest", "/test");
+        PropertiesLoader propsLoader = new PropertiesLoader(Var.WITH_SYSTEM_PROPERTY_AS_VARIABLE_PROPS, MyPropsSimple.class);
+        Properties props = propsLoader.load();
+        assertEquals("Cannot use system property as variable", "/test/home", props.get(MyPropsSimple.HOME));
+    }
+    
+    @Test
+    public void readsEnvInVariable(){
+        PropertiesLoader propsLoader = new PropertiesLoader(Var.WITH_ENV_AS_VARIABLE_PROPS, MyPropsSimple.class);
+        Properties props = propsLoader.load();
+        assertFalse("Cannot use environment variable as property variable", props.get(MyPropsSimple.TEST).isEmpty());
+    }
+    
     @Test
     public void readsConfigValueSimple(){
         PropertiesLoader propsLoader = new PropertiesLoader(Var.SIMPLE_PROPS, MyPropsSimple.class);

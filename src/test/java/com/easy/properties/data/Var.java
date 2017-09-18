@@ -1,6 +1,7 @@
 package com.easy.properties.data;
 
 public class Var {
+
     public static final String RESOURCE_DIR = "src/test/resources/";
     public static final String SIMPLE_PROPS = RESOURCE_DIR + "propsSimple.properties";
     public static final String NON_EXISTENT_PROPS = RESOURCE_DIR + "nonExistentFile.properties";
@@ -13,6 +14,11 @@ public class Var {
     public static final String WITHOUT_CURLY_BRACE_VAR_PROPS = RESOURCE_DIR + "propsWithVariableWithoutCurlyBrace.properties";
     public static final String WITH_DIFFERENT_KEYNAME_VAR_PROPS = RESOURCE_DIR + "propsWithDiffKeyName.properties";
     public static final String WITH_NON_STRING_VALS_PROPS = RESOURCE_DIR + "propsWithNonStringValues.properties";
-    
-    private Var(){}
+    public static final String WITH_SINGLE_LETTER_KEYS_PROPS = RESOURCE_DIR + "propsWithSingleLetterKey.properties";
+    public static final String WITH_CYCLIC_DEPENDENCY_PROPS = RESOURCE_DIR + "propsWithCyclicDependency.properties";
+    public static final String WITH_SYSTEM_PROPERTY_AS_VARIABLE_PROPS = RESOURCE_DIR + "propsWithSysPropsAsVariable.properties";
+    public static final String WITH_ENV_AS_VARIABLE_PROPS = RESOURCE_DIR + "propsWithEnvAsVariable.properties";
+
+    private Var() {
+    }
 }

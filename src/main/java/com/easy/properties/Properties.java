@@ -1,11 +1,13 @@
 package com.easy.properties;
 
+import com.easy.core.utils.RegexUtil;
 import com.easy.properties.exception.InvalidConfigException;
-import com.easy.properties.util.RegexUtil;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -98,10 +100,10 @@ public class Properties{
     ${HOME} or $HOME. Note, that curly braces are optional, but often they make the configuration text more readable by enhancing the clarity.
     The substitution is performed recursively so that value is resolved correctly if value for a key itself contains another key
     */
-    synchronized void makeSubstitutions(){
+    public synchronized void makeSubstitutions(){
         logger.debug("Performing variable-substitutions");
         for(ConfigKey configKey : dataMap.keySet()){
-            String substitutedValue = getSubstitutedValue(dataMap.get(configKey));
+            String substitutedValue = getSubstitutedValue(new HashSet<ConfigKey>(), configKey, dataMap.get(configKey));
             logger.trace("Value after substitutions: {}", substitutedValue);
             dataMap.put(configKey, substitutedValue);
         }
@@ -112,11 +114,16 @@ public class Properties{
     Logic summary:
     1. Find patterns like ${VAR} or $VAR in the given text value
     2. For each of found occurrences, replace "${VAR}" or "$VAR" with value obtained from data-map using key VAR (or empty if no value present)
+    3. Keep a record of encountered property keys in a set and check if variable extracted from value is same as one of the keys encountered
+       so far. If so, raise the exception. This is done in order to detect the cyclic dependencies in the property files, e.g. x = $y, y = $x
     */
-    private String getSubstitutedValue(String value){
+    private String getSubstitutedValue(Set<ConfigKey> encounteredKeys, ConfigKey key, String value){
+        logger.trace("Adding {} to encountered keys", key);
+        encounteredKeys.add(key);
+        
         logger.trace("Making variable substitution on ({})", value);
         String result = value;
-        String regex = "(\\$\\{\\s*([a-zA-Z_.][a-zA-Z_.0-9]+)\\s*\\})|(\\$([a-zA-Z_.][a-zA-Z_.0-9]+))";
+        String regex = "(\\$\\{\\s*([a-zA-Z_.][a-zA-Z_.0-9]*)\\s*\\})|(\\$([a-zA-Z_.][a-zA-Z_.0-9]*))";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);
         while(matcher.find()){
@@ -124,10 +131,31 @@ public class Properties{
             String varNameWithoutCurlyBrace = matcher.group(4);
             String varName = varNameWithCurlyBrace == null ? varNameWithoutCurlyBrace : varNameWithCurlyBrace;
             ConfigKey varNameKey = new ConfigKey(varName);
+            // If a key in value is same as the corresponding key, trying to retrieve the result will get us to stack overflow error due to
+            // cyclic dependency. For example, let's consider this:
+            // -------------
+            // X = $Y
+            // Y = $Z
+            // Z = $X
+            // -------------
+            // If we try to get value of any of X, Y or Z, the infinite loop will occur. So, I have taken keys in a set and check if the variable
+            // obtained through parsing the value is same as any of the encountered keys
+            
+            if(encounteredKeys.contains(varNameKey)){
+                logger.error("Detected cyclic dependency for {} in {}", varNameKey.getKeyName(), value);
+                throw new InvalidConfigException("Detected cyclic dependency in: " + value + ", for: " + varNameKey.getKeyName());
+            }
+            
             // Here, we are making a recursive call. This is done in order to handle cases where the value also
             // has some key in it. For example, "home = /tmp", path="${home}/bin" and "conf = ${path}/../conf", then
             // we would need to have this recursive call in order to resolve ${conf} correctly
-            String valueToReplace = dataMap.containsKey(varNameKey) ? getSubstitutedValue(dataMap.get(varNameKey)) : "";
+            String valueToReplace = dataMap.containsKey(varNameKey) ? getSubstitutedValue(encounteredKeys, varNameKey, dataMap.get(varNameKey)) : "";
+            if(valueToReplace == null || valueToReplace.isEmpty()){
+                valueToReplace = System.getProperty(varNameKey.getKeyName());
+            }
+            if(valueToReplace == null || valueToReplace.isEmpty()){
+                valueToReplace = System.getenv(varNameKey.getKeyName());
+            }
             String varNameRegex = "\\$\\{\\s*" + varName + "\\s*\\}|\\$" + varName;
             logger.trace("Making substitution on ({}): replace ({}) by ({})", result, varNameRegex, valueToReplace);
             result = result.replaceAll(varNameRegex, valueToReplace);
@@ -145,7 +173,13 @@ public class Properties{
         ConfigKey configKey = new ConfigKey(key);
         String val = dataMap.get(configKey);
         if(val == null || val.isEmpty()){
-            val = getSubstitutedValue(configKey.getDefaultValue());
+            val = getSubstitutedValue(new HashSet<ConfigKey>(), configKey, configKey.getDefaultValue());
+        }
+        if(val == null || val.isEmpty()){
+            val = System.getProperty(configKey.getKeyName());
+        }
+        if(val == null || val.isEmpty()){
+            val = System.getenv(configKey.getKeyName());
         }
         return val;
     }
