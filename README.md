@@ -24,7 +24,7 @@ An easy to use and lightweight Java library for retrieving configuration propert
 
 <a name="short_description"></a>
 ## Short Description
-While using property files are often preferred for defining application configurations due to their simplicity and readability, they also have certain disadvantages. One of the major problem in using property files is that property keys are in the form of `String`, so it is difficult to manage. If we were to change some key, we need to manually search its occurrences and update all of them. This makes our code fragile and cumbersome. So, this library is designed to provide `enum` backed configuration property. Due to use of `enum`, all the property keys are defined in a single place, and since enum constants are referred to instead of plain `String`s, refactoring the code becomes easy and less error prone. The APIs also provide methods for retrieval of the values in form of data type that we want. Have a look at [Javadocs](https://easy-develop.github.io/properties/1.0.0/apidocs/) for details
+While using property files are often preferred for defining application configurations due to their simplicity and readability, they also have certain disadvantages. One of the major problem in using property files is that property keys are in the form of `String`, so it is difficult to manage. If we were to change some key, we need to manually search its occurrences and update all of them. This makes our code fragile and cumbersome. So, this library is designed to provide `enum` backed configuration property. Due to use of `enum`, all the property keys are defined in a single place, and since enum constants are referred to instead of plain `String`s, refactoring the code becomes easy and less error prone. The APIs also provide methods for retrieval of the values in form of data type that we want. Have a look at [Javadocs](https://easy-develop.github.io/properties/1.0.1/apidocs/) for details
 
 <a name="prerequisites"></a>
 ## Prerequisites
@@ -37,10 +37,10 @@ While using property files are often preferred for defining application configur
 <dependency>
     <groupId>com.github.easy-develop</groupId>
     <artifactId>properties</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
-If you are using any other tool for build, have a look at [Maven Repository](https://mvnrepository.com/artifact/com.github.easy-develop/properties/1.0.0) page for corresponding dependency declaration
+If you are using any other tool for build, have a look at [Maven Repository](https://mvnrepository.com/artifact/com.github.easy-develop/properties/1.0.1) page for corresponding dependency declaration
 
 - Create an `enum` class which will define the property keys, like below example:
 ```java
@@ -79,7 +79,7 @@ CONF_DIR = ${HOME_DIR}/conf
 LOG_DIR = ${HOME_DIR}/logs
 CURRENT_USER_IDS = 1921, 8887, 7746
 ```
-Have a look at [examples](https://easy-develop.github.io/properties/1.0.0/examples) if you want to see the usage in different cases
+Have a look at [examples](https://easy-develop.github.io/properties/1.0.1/examples) if you want to see the usage in different cases
 
 <a name="support"></a>
 ## Support
