@@ -41,7 +41,7 @@
 
 <h2 id="short_description">Short Description</h2>
 
-<p>While using property files are often preferred for defining application configurations due to their simplicity and readability, they also have certain disadvantages. One of the major problem in using property files is that property keys are in the form of <code>String</code>, so it is difficult to manage. If we were to change some key, we need to manually search its occurrences and update all of them. This makes our code fragile and cumbersome. So, this library is designed to provide <code>enum</code> backed configuration property. Due to use of <code>enum</code>, all the property keys are defined in a single place, and since enum constants are referred to instead of plain <code>String</code>s, refactoring the code becomes easy and less error prone. The APIs also provide methods for retrieval of the values in form of data type that we want. Have a look at <a href="https://easy-develop.github.io/properties/1.0.0/apidocs/">Javadocs</a> for details</p>
+<p>While using property files are often preferred for defining application configurations due to their simplicity and readability, they also have certain disadvantages. One of the major problem in using property files is that property keys are in the form of <code>String</code>, so it is difficult to manage. If we were to change some key, we need to manually search its occurrences and update all of them. This makes our code fragile and cumbersome. So, this library is designed to provide <code>enum</code> backed configuration property. Due to use of <code>enum</code>, all the property keys are defined in a single place, and since enum constants are referred to instead of plain <code>String</code>s, refactoring the code becomes easy and less error prone. The APIs also provide methods for retrieval of the values in form of data type that we want. Have a look at <a href="https://easy-develop.github.io/properties/1.0.1/apidocs/">Javadocs</a> for details</p>
 
 <p><a></a></p>
 
@@ -68,10 +68,10 @@
 <pre class="prettyprint"><code class="language-xml hljs "><span class="hljs-tag">&lt;<span class="hljs-title">dependency</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">groupId</span>&gt;</span>com.github.easy-develop<span class="hljs-tag">&lt;/<span class="hljs-title">groupId</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">artifactId</span>&gt;</span>properties<span class="hljs-tag">&lt;/<span class="hljs-title">artifactId</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>1.0.0<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>1.0.1<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">dependency</span>&gt;</span></code></pre>
 
-<p>If you are using any other tool for build, have a look at <a href="https://mvnrepository.com/artifact/com.github.easy-develop/properties/1.0.0">Maven Repository</a> page for corresponding dependency declaration</p>
+<p>If you are using any other tool for build, have a look at <a href="https://mvnrepository.com/artifact/com.github.easy-develop/properties/1.0.1">Maven Repository</a> page for corresponding dependency declaration</p>
 
 <ul>
 <li>Create an <code>enum</code> class which will define the property keys, like below example:</li>
@@ -120,7 +120,7 @@
 <span class="hljs-setting">LOG_DIR = <span class="hljs-value">${HOME_DIR}/logs</span></span>
 <span class="hljs-setting">CURRENT_USER_IDS = <span class="hljs-value"><span class="hljs-number">1921</span>, <span class="hljs-number">8887</span>, <span class="hljs-number">7746</span></span></span></code></pre>
 
-<p>Have a look at <a href="https://easy-develop.github.io/properties/1.0.0/examples">examples</a> if you want to see the usage in different cases</p>
+<p>Have a look at <a href="https://easy-develop.github.io/properties/1.0.1/examples">examples</a> if you want to see the usage in different cases</p>
 
 <p><a></a></p>
 
